@@ -14,7 +14,23 @@ This repository contains tools for processing geospatial data, specifically for 
 To use the GeoTIFF reader, navigate to the directory containing the `geotiff_reader.py` script and run the following command:
 
 ```sh
-python geotiff_reader.py --points_file <path_to_csv_with_points> [--geotiff_file <path_to_geotiff_file>] [--geotiff_dir <path_to_directory_with_geotiff_files>] [--raster_band <band_number>] [--all_bands] [--csv_output <output_csv_file>]
+usage: geotiff_reader.py [-h] [-f GEOTIFF_FILE] [-d GEOTIFF_DIR] -p POINTS_FILE [-b RASTER_BAND] [-a] [--csv_output CSV_OUTPUT]
+
+Process GeoTIFF file
+
+options:
+  -h, --help            show this help message and exit
+  -f GEOTIFF_FILE, --geotiff_file GEOTIFF_FILE
+                        GeoTIFF file location
+  -d GEOTIFF_DIR, --geotiff_dir GEOTIFF_DIR
+                        Directory with bunch of GeoTIFF files inside
+  -p POINTS_FILE, --points_file POINTS_FILE
+                        File with points columns (longitude,latitude)
+  -b RASTER_BAND, --raster_band RASTER_BAND
+                        Raster band in tiff file you would like to read data from
+  -a, --all_bands       Read values from all raster bands
+  --csv_output CSV_OUTPUT
+
 ```
 
 Replace `<path_to_csv_with_points>` with the path to the CSV file containing the points (longitude, latitude). Optionally, you can specify a single GeoTIFF file using `--geotiff_file` or a directory containing multiple GeoTIFF files using `--geotiff_dir`. Use `--raster_band` to specify a particular band to read from the GeoTIFF file(s), or use `--all_bands` to read from all available bands. The results will be written to the file specified by `--csv_output`, which defaults to `output.csv` if not provided.
@@ -30,7 +46,15 @@ To convert NetCDF files to GeoTIFF, provide a directory containing NetCDF files.
 To convert NetCDF files to GeoTIFF format, navigate to the directory containing the `netcdf_to_geotiff_converter.py` script and run the following command:
 
 ```sh
-python netcdf_to_geotiff_converter.py --netcdf4_dir <path_to_netcdf_files_directory> [--crs <coordinate_reference_system>]
+usage: netcdf_to_geotiff_converter.py [-h] -n NETCDF4_DIR [-c CRS]
+
+Process GeoTIFF file
+
+options:
+  -h, --help            show this help message and exit
+  -n NETCDF4_DIR, --netcdf4_dir NETCDF4_DIR
+                        Directory with bunch of netcdf4 files inside
+  -c CRS, --crs CRS     crs of the output geotiff(s)
 ```
 
 Replace `<path_to_netcdf_files_directory>` with the path to the directory containing your NetCDF files. Optionally, you can specify the coordinate reference system (CRS) for the output GeoTIFF files by replacing `<coordinate_reference_system>` with the desired CRS code (e.g., "epsg:4326").
